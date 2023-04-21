@@ -1,6 +1,8 @@
-import { CircularProgress, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { BackLink } from 'components/BackLink/BackLink';
+import { Btn } from 'components/Button/Button';
 import { NotFound } from 'components/NotFound/NotFound';
+import { Spinner } from 'components/Spinner/Spinner';
 import { UsersList } from 'components/UsersList/UsersList';
 import { usersGet } from 'components/service/ApiGet';
 import { useEffect, useState } from 'react';
@@ -33,9 +35,15 @@ const Tweets = () => {
       <div>
         <BackLink to={backLinkHref}>Go back</BackLink>
       </div>
+      {isLoader && <Spinner />}
 
       {users.length > 0 && <UsersList users={users} />}
-      {isLoader && <CircularProgress disableShrink />}
+
+      {/* {isVisible && */}
+      <Btn
+      //   loadMore={loadMore}
+      />
+
       {error && (
         <NotFound children={`Something went wrong Try again later.😭`} />
       )}

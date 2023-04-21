@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import { Outlet } from 'react-router';
 import { Suspense } from 'react';
 import { Footer } from 'components/Footer/Footer';
@@ -8,24 +8,21 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <Box component="main">
-        <Container
-          // maxWidth="sm"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            minHeight: 'calc(100vh - 120px)',
+      <Box
+        component="main"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          minHeight: 'calc(100vh - 120px)',
 
-            pt: 3,
-            pb: 3,
-          }}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <Outlet />
-          </Suspense>
-        </Container>
+          pt: 3,
+          pb: 3,
+        }}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </Box>
-      <CssBaseline />
       <Footer />
     </>
   );

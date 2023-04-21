@@ -1,5 +1,4 @@
-import { LinkStyled } from 'components/Styled.styled';
-import { Button } from './BackLink.styled';
+import { Button, LinkStyled } from 'components/Styled.styled';
 
 export const BackLink = ({ to, children }) => {
   return (
