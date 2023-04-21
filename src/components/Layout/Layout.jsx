@@ -1,44 +1,23 @@
-import { AppBar, Box, Container, Typography } from '@mui/material';
-import { LinkStyled } from '../LinkStyled.styled';
+import { Box, Container, CssBaseline } from '@mui/material';
 import { Outlet } from 'react-router';
 import { Suspense } from 'react';
+import { Footer } from 'components/Footer/Footer';
+import { Header } from 'components/Header/Header';
 
 export const Layout = () => {
   return (
     <>
-      <AppBar position="static">
-        <Box
-          component="nav"
-          sx={{
-            display: { xs: 'flex' },
-            height: '60px',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-          }}
-        >
-          <LinkStyled to="/">
-            <Typography variant="h5" sx={{ mr: 1 }}>
-              Home
-            </Typography>
-          </LinkStyled>
-          <LinkStyled to="tweets">
-            <Typography variant="h5" sx={{ mr: 1 }}>
-              Tweets
-            </Typography>
-          </LinkStyled>
-        </Box>
-      </AppBar>
-
+      <Header />
       <Box component="main">
         <Container
-          maxWidth="sm"
+          // maxWidth="sm"
           sx={{
             display: 'flex',
             justifyContent: 'center',
+            minHeight: 'calc(100vh - 120px)',
 
             pt: 3,
-            pb: 13,
+            pb: 3,
           }}
         >
           <Suspense fallback={<div>Loading...</div>}>
@@ -46,6 +25,8 @@ export const Layout = () => {
           </Suspense>
         </Container>
       </Box>
+      <CssBaseline />
+      <Footer />
     </>
   );
 };

@@ -1,9 +1,9 @@
-import { Button } from '@mui/material';
-import { LinkStyled } from 'components/LinkStyled.styled';
+import { LinkStyled } from 'components/Styled.styled';
+import { Button } from './BackLink.styled';
 
 export const BackLink = ({ to, children }) => {
   return (
-    <Button variant="contained">
+    <Button>
       <LinkStyled to={to}>{children}</LinkStyled>
     </Button>
   );
