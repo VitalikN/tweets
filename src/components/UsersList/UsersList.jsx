@@ -11,13 +11,12 @@ import {
 } from './UsersList.styled';
 
 export const UsersList = ({ users }) => {
-  console.log(users);
   return (
     <List>
       {users.map(({ id, user, tweets, followers, avatar }) => (
         <Item key={id}>
           <Logo src={require('./Logo.png')} alt="logo" />
-          <Icon src={require('./picture.png')} alt={'picture'} />
+          <Icon src={require('./picture.png')} alt="picture" />
           <Chip></Chip>
           <Сircle></Сircle>
           <Avatar

@@ -9,6 +9,6 @@ export const Btn = ({ loadMore }) => (
       justifyContent: 'center',
     }}
   >
-    <Button onClick={loadMore}>loadMore</Button>
+    <Button onClick={loadMore}>load More</Button>
   </Box>
 );
