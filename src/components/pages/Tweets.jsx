@@ -16,23 +16,21 @@ const Tweets = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [perPage] = useState(4);
+  const [perPage] = useState(3);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsLoader(true);
     const cardUser = async () => {
       try {
         const { data } = await usersGet();
-        if (data.length === 0) {
-          // setIsEmpty(true);
-          return;
-        }
-        // setUsers(data);
+        const total = data.length;
         const lastUsersIndex = page * perPage;
         const firstUsersIndex = lastUsersIndex - perPage;
         const currentUsers = data.slice(firstUsersIndex, lastUsersIndex);
 
         setUsers(prev => [...prev, ...currentUsers]);
+        setIsVisible(page < Math.ceil(total / perPage));
       } catch (error) {
         setError(error.message);
       } finally {
@@ -54,9 +52,8 @@ const Tweets = () => {
       {isLoader && <Spinner />}
 
       {users.length > 0 && <UsersList users={users} />}
-      {/* {isVisible && */}
-      <Btn loadMore={loadMore} />
 
+      {isVisible && <Btn loadMore={loadMore} />}
       {error && (
         <NotFound children={`Something went wrong Try again later.😭`} />
       )}

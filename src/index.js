@@ -10,9 +10,9 @@ import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/700.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter basename="/tweets">
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter basename="/tweets">
+    <App />
+  </BrowserRouter>
+  // </React.StrictMode>
 );

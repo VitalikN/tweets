@@ -7,6 +7,7 @@ export const NotFound = ({ children }) => {
   return (
     <>
       <BackLink to={backLinkHref}>Go back</BackLink>
+      {children}
     </>
   );
 };

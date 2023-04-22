@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import { Avatar, Box } from '@mui/material';
 import {
   List,
@@ -14,7 +16,7 @@ export const UsersList = ({ users }) => {
   return (
     <List>
       {users.map(({ id, user, tweets, followers, avatar }) => (
-        <Item key={id}>
+        <Item key={nanoid()} id={id}>
           <Logo src={require('./Logo.png')} alt="logo" />
           <Icon src={require('./picture.png')} alt="picture" />
           <Chip></Chip>
