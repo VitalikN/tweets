@@ -11,8 +11,16 @@ import {
   Button,
   Logo,
 } from './UsersList.styled';
+import { useState } from 'react';
 
 export const UsersList = ({ users }) => {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = evt => {
+    // evt.preventdefault();
+    setChecked(!checked);
+  };
+  console.log(users);
   return (
     <List>
       {users.map(({ id, user, tweets, followers, avatar }) => (
@@ -37,9 +45,15 @@ export const UsersList = ({ users }) => {
             }}
           >
             <Text>{tweets} tweets</Text>
-            <Text>{followers.toLocaleString('en-US')} followers</Text>
+            <Text>
+              {(!checked ? followers : followers + 1).toLocaleString('en-US')}
+              followers
+            </Text>
           </Box>
-          <Button>Follow</Button>
+
+          <Button type="button" onClick={handleChange}>
+            {!checked ? 'Follow' : 'Following'}
+          </Button>
         </Item>
       ))}
     </List>

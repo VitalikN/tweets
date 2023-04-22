@@ -12,12 +12,19 @@ const Tweets = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(
+    () => JSON.parse(localStorage.getItem('users')) ?? []
+  );
+
   const [isLoader, setIsLoader] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [perPage] = useState(3);
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users));
+  }, [users]);
 
   useEffect(() => {
     setIsLoader(true);
@@ -27,6 +34,7 @@ const Tweets = () => {
         const total = data.length;
         const lastUsersIndex = page * perPage;
         const firstUsersIndex = lastUsersIndex - perPage;
+
         const currentUsers = data.slice(firstUsersIndex, lastUsersIndex);
 
         setUsers(prev => [...prev, ...currentUsers]);

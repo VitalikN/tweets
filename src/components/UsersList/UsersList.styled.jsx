@@ -106,7 +106,7 @@ export const Button = styled.button`
   text-transform: uppercase;
 
   color: #373737;
-
+  &:active,
   &:hover {
     background: #5cd3a8;
   }
