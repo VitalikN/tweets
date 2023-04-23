@@ -9,5 +9,5 @@ export const AppBar = styled(Header)`
       rgba(84, 90, 182, 0) 75%
     ),
     radial-gradient(circle at right top, #794aa2 0%, rgba(121, 74, 162, 0) 57%);
-  background-repeat: no-repeat;
+  
 `;

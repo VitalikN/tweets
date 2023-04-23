@@ -4,7 +4,7 @@ import { AppBar } from './Header.styled';
 
 export const Header = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" >
       <Box
         component="nav"
         sx={{

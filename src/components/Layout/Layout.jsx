@@ -13,7 +13,7 @@ export const Layout = () => {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          minHeight: 'calc(100vh - 120px)',
+          minHeight: 'calc(100vh - 165px)',
 
           pt: 3,
           pb: 3,
