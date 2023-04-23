@@ -8,25 +8,50 @@ import {
   Chip,
   Сircle,
   Text,
-  Button,
   Logo,
+  Button,
 } from './UsersList.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { usersGet } from 'components/service/Api';
 
-export const UsersList = ({ users }) => {
-  const [checked, setChecked] = useState(false);
+export const UsersList = ({ users, updateUserFollowers }) => {
+  const [allListUsers, setAllListUsers] = useState([]);
+  const [follow, setFollow] = useState([]);
 
-  const handleChange = evt => {
-    // evt.preventdefault();
-    setChecked(!checked);
+  useEffect(() => {
+    (async () => {
+      const { data } = await usersGet();
+      setAllListUsers(data);
+    })();
+  }, []);
+
+  useEffect(() => {
+    const storedFollow = localStorage.getItem('follow');
+    if (storedFollow) {
+      setFollow(JSON.parse(storedFollow));
+    } else {
+      const newState = new Array(allListUsers.length).fill(false);
+      setFollow(newState);
+    }
+  }, [allListUsers.length]);
+  const handleChangeFollowers = (id, followers, isFollowing, i) => {
+    const updateFollower = follow.map((el, idx) => {
+      if (idx === i) {
+        return !el;
+      }
+      return el;
+    });
+    setFollow(updateFollower);
+    localStorage.setItem('follow', JSON.stringify(updateFollower));
+    updateUserFollowers(id, followers, isFollowing);
   };
-  console.log(users);
+
   return (
     <List>
-      {users.map(({ id, user, tweets, followers, avatar }) => (
-        <Item key={nanoid()} id={id}>
-          <Logo src={require('./Logo.png')} alt="logo" />
-          <Icon src={require('./picture.png')} alt="picture" />
+      {users.map(({ id, user, tweets, followers, avatar }, idx) => (
+        <Item key={nanoid()}>
+          <Logo src={require('../images/Logo.png')} alt="logo" />
+          <Icon src={require('../images/picture.png')} alt="picture" />
           <Chip></Chip>
           <Сircle></Сircle>
           <Avatar
@@ -46,13 +71,19 @@ export const UsersList = ({ users }) => {
           >
             <Text>{tweets} tweets</Text>
             <Text>
-              {(!checked ? followers : followers + 1).toLocaleString('en-US')}
+              {(followers + 1).toLocaleString('en-US')}
               followers
             </Text>
           </Box>
 
-          <Button type="button" onClick={handleChange}>
-            {!checked ? 'Follow' : 'Following'}
+          <Button
+            type="button"
+            onClick={() =>
+              handleChangeFollowers(id, followers, follow[idx], idx)
+            }
+            followed={follow[idx]}
+          >
+            {follow[idx] ? 'Following' : 'Follow'}
           </Button>
         </Item>
       ))}

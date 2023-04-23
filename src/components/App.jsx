@@ -1,8 +1,8 @@
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import { Layout } from './Layout/Layout';
 import Home from './pages/Home';
 import Tweets from './pages/Tweets';
-import { NotFound } from './NotFound/NotFound';
+// import { NotFound } from './NotFound/NotFound';
 
 export const App = () => {
   return (
@@ -11,7 +11,7 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="tweets" element={<Tweets />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

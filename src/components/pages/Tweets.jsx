@@ -1,10 +1,10 @@
 import { Container } from '@mui/material';
 import { BackLink } from 'components/BackLink/BackLink';
 import { Btn } from 'components/Button/Button';
-import { NotFound } from 'components/NotFound/NotFound';
+import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
 import { Spinner } from 'components/Spinner/Spinner';
 import { UsersList } from 'components/UsersList/UsersList';
-import { usersGet } from 'components/service/ApiGet';
+import { userId, usersGet } from 'components/service/Api';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
@@ -12,19 +12,12 @@ const Tweets = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const [users, setUsers] = useState(
-    () => JSON.parse(localStorage.getItem('users')) ?? []
-  );
-
+  const [users, setUsers] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [perPage] = useState(3);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users));
-  }, [users]);
 
   useEffect(() => {
     setIsLoader(true);
@@ -52,6 +45,24 @@ const Tweets = () => {
     setPage(() => page + 1);
   };
 
+  const updateUserFollowers = async (id, followers, isFollowing) => {
+    let body;
+    !isFollowing
+      ? (body = { followers: followers + 1 })
+      : (body = { followers: followers - 1 });
+
+    try {
+      await userId({ id, body });
+    } catch (error) {
+      setError(error.message);
+    }
+
+    const updateFollowers = users.map(user => {
+      return user.id === id ? { ...user, ...body } : user;
+    });
+    setUsers(updateFollowers);
+  };
+
   return (
     <Container>
       <div>
@@ -59,11 +70,13 @@ const Tweets = () => {
       </div>
       {isLoader && <Spinner />}
 
-      {users.length > 0 && <UsersList users={users} />}
+      {users.length > 0 && (
+        <UsersList users={users} updateUserFollowers={updateUserFollowers} />
+      )}
 
       {isVisible && <Btn loadMore={loadMore} />}
       {error && (
-        <NotFound children={`Something went wrong Try again later.😭`} />
+        <ErrorMsg children={`Something went wrong Try again later.😭`} />
       )}
     </Container>
   );
