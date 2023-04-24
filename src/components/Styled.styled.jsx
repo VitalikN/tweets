@@ -8,6 +8,8 @@ export const LinkStyled = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 45px;
+
   &.active {
     color: #5cd3a8;
   }
@@ -18,7 +20,6 @@ export const Button = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 14px 28px;
   gap: 6px;
 
   width: 196px;

@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import { BackLink } from 'components/BackLink/BackLink';
 import { Btn } from 'components/Button/Button';
-import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
+import { Error } from 'components/Error/Error';
 import { Spinner } from 'components/Spinner/Spinner';
 import { UsersList } from 'components/UsersList/UsersList';
 import { userId, usersGet } from 'components/service/Api';
@@ -41,9 +41,8 @@ const Tweets = () => {
     cardUser();
   }, [page, perPage]);
 
-  const loadMore = () => {
-    setPage(() => page + 1);
-  };
+  const loadMore = () =>setPage(() => page + 1);
+  
 
   const updateUserFollowers = async (id, followers, isFollowing) => {
     let body;
@@ -57,12 +56,9 @@ const Tweets = () => {
       setError(error.message);
     }
 
-    const updateFollowers = users.map(user => {
-      return user.id === id ? { ...user, ...body } : user;
-    });
+    const updateFollowers = users.map(user =>  user.id === id ? { ...user, ...body } : user);
     setUsers(updateFollowers);
   };
-
   return (
     <Container>
       <div>
@@ -76,7 +72,7 @@ const Tweets = () => {
 
       {isVisible && <Btn loadMore={loadMore} />}
       {error && (
-        <ErrorMsg children={`Something went wrong Try again later.😭`} />
+        <Error children={`Something went wrong Try again later.😭`} />
       )}
     </Container>
   );

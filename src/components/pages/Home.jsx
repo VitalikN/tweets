@@ -7,8 +7,9 @@ const Home = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
-        mt:4,
+        
          textAlign:'center',
          color:'#794aa2',
       }}

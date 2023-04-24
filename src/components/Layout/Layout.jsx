@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Outlet } from 'react-router';
 import { Suspense } from 'react';
 import { Footer } from 'components/Footer/Footer';
@@ -19,7 +19,8 @@ export const Layout = () => {
           pb: 3,
         }}
       >
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={  <Typography variant="h6" sx={{  color:'#794aa2'}}>Loading...</Typography>
+}>
           <Outlet />
         </Suspense>
       </Box>
