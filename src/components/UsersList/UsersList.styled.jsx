@@ -7,4 +7,5 @@ export const List = styled.ul`
   flex-wrap: wrap;
   padding: 0;
   gap: 48px;
+  list-style: none;
 `;

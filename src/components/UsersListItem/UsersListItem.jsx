@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 
-export const Item = styled.li`
-  position: relative;
+
+
+export const Container = styled.div`
+ position: relative;
+ text-align: center;
+  width: 380px;
+  height: 460px;
+
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  width: 380px;
-  height: 460px;
 
   background: linear-gradient(
     114.99deg,
@@ -17,7 +21,7 @@ export const Item = styled.li`
   );
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
-`;
+  `;
 
 export const Logo = styled.img`
   position: absolute;
@@ -39,8 +43,9 @@ export const Chip = styled.span`
   position: absolute;
   width: 380px;
   height: 8px;
-  left: 0px;
-  top: 214px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   background: #ebd8ff;
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
@@ -51,8 +56,9 @@ export const Сircle = styled.span`
   position: absolute;
   width: 80px;
   height: 80px;
-  left: 150px;
-  top: 180px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   background: #ebd8ff;
 

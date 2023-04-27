@@ -1,7 +1,8 @@
 import { nanoid } from 'nanoid';
 import { Avatar, Box } from '@mui/material';
 import {
-    Item,
+ 
+    Container,
     Icon,
     Chip,
     Сircle,
@@ -13,7 +14,8 @@ import {
 export const UsersListItem = ({users,follow, handleChangeFollowers})=> {
 
     return ( users.map(({ id, user, tweets, followers, avatar }, idx) => (
-            <Item key={nanoid()}>
+            <li key={nanoid()}>
+            <Container>
               <Logo src={require('../../images/Logo.png')} alt="logo" />
               <Icon src={require('../../images/picture.png')} alt="picture" />
               <Chip></Chip>
@@ -21,7 +23,9 @@ export const UsersListItem = ({users,follow, handleChangeFollowers})=> {
               <Avatar
                 alt={user}
                 src={avatar}
-                sx={{ width: 62, height: 62, position: 'absolute', top: 189 }}
+                sx={{ width: 62, height: 62, position: 'absolute',  left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)' }}
               />
               <Box
                 sx={{
@@ -47,7 +51,8 @@ export const UsersListItem = ({users,follow, handleChangeFollowers})=> {
               >
                 {follow[idx] ? 'Following' : 'Follow'}
               </Button>
-            </Item>
+              </Container>
+            </li>
           ))
 
     )
