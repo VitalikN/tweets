@@ -2,9 +2,13 @@
 
 ---
 
-[Tweets](https://vitalikn.github.io/tweets) - web pages to save in memory
-followers. Adaptive design covers two screen types with the following
+[Tweets](https://vitalikn.github.io/tweets) -  small SPA (single page application) project. It presents a simple connection to the [mocapi.io](https://mockapi.io/projects) server to display a list of "fake tweets" users, perform some simple operations, and navigate the page.
+
+- change the number of tweets and read/write them from/to the server;
+- adaptive design covers two screen types with the following
 breakpoints: 420px, 860px
+- navigation between pages
+- implement server-based pagination to limit user downloads;
 
 ### How to run project locally
 
