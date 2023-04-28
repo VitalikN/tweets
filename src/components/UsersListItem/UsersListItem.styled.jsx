@@ -1,59 +1,110 @@
-import { nanoid } from 'nanoid';
-import { Avatar, Box } from '@mui/material';
-import {
- 
-    Container,
-    Icon,
-    Chip,
-    Сircle,
-    Text,
-    Logo,
-    Button,
-  } from './UsersListItem';
+import styled from '@emotion/styled';
 
-export const UsersListItem = ({users,follow, handleChangeFollowers})=> {
 
-    return ( users.map(({ id, user, tweets, followers, avatar }, idx) => (
-            <li key={nanoid()}>
-            <Container>
-              <Logo src={require('../../images/Logo.png')} alt="logo" />
-              <Icon src={require('../../images/picture.png')} alt="picture" />
-              <Chip></Chip>
-              <Сircle></Сircle>
-              <Avatar
-                alt={user}
-                src={avatar}
-                sx={{ width: 62, height: 62, position: 'absolute',  left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)' }}
-              />
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '16px',
-                  mt: '26px',
-                  mb: '26px',
-                }}
-              >
-                <Text>{tweets} tweets</Text>
-                <Text>{(followers + 1).toLocaleString('en-US')}
-                 <span> followers</span> </Text>
-              </Box>
-    
-              <Button
-                type="button"
-                onClick={() =>
-                  handleChangeFollowers(id, followers, follow[idx], idx)
-                }
-                followed={follow[idx]}
-              >
-                {follow[idx] ? 'Following' : 'Follow'}
-              </Button>
-              </Container>
-            </li>
-          ))
 
-    )
-}
+export const Container = styled.div`
+ position: relative;
+ text-align: center;
+  width: 380px;
+  height: 460px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+
+  background: linear-gradient(
+    114.99deg,
+    #471ca9 -0.99%,
+    #5736a3 54.28%,
+    #4b2a99 78.99%
+  );
+  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  border-radius: 20px;
+  `;
+
+export const Logo = styled.img`
+  position: absolute;
+  width: 76px;
+  height: 22px;
+  left: 20px;
+  top: 20px;
+`;
+
+export const Icon = styled.img`
+  position: absolute;
+  width: 308px;
+  height: 168px;
+  left: 36px;
+  top: 28px;
+`;
+
+export const Chip = styled.span`
+  position: absolute;
+  width: 380px;
+  height: 8px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #ebd8ff;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
+    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+`;
+
+export const Сircle = styled.span`
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #ebd8ff;
+
+  box-shadow: 0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06),
+    inset 0px -2.19582px 4.39163px #ae7be3,
+    inset 0px 4.39163px 3.29372px #fbf8ff;
+  border-radius: 50%;
+`;
+
+export const Text = styled.p`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  color: #ebd8ff;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 28px;
+  gap: 6px;
+  margin-bottom: 36px;
+
+  width: 196px;
+  height: 50px;
+
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  text-transform: uppercase;
+
+  color: #373737;
+  background-color: ${props => (props.followed ? ' #5CD3A8' : ' #ebd8ff')};
+
+  &:hover {
+    background: #5cd3a8;
+  }
+`;

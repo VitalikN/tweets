@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { LinkStyled } from '../Styled.styled';
+import { LinkStyled } from '../../components/Styled.styled';
 import { AppBar } from './Header.styled';
 
 export const Header = () => {

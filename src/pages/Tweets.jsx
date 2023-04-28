@@ -4,7 +4,7 @@ import { Btn } from 'components/Button/Button';
 import { Error } from 'components/Error/Error';
 import { Spinner } from 'components/Spinner/Spinner';
 import { UsersList } from 'components/UsersList/UsersList';
-import { userId, usersGet } from 'components/service/Api';
+import { userId, usersGet } from 'service/Api';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 

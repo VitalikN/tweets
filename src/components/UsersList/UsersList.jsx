@@ -1,7 +1,7 @@
 import { List} from './UsersList.styled';
 import { useEffect, useState } from 'react';
-import { usersGet } from 'components/service/Api';
-import { UsersListItem } from 'components/UsersListItem/UsersListItem.styled';
+import { usersGet } from 'service/Api';
+import { UsersListItem } from 'components/UsersListItem/UsersListItem';
 
 export const UsersList = ({ users, updateUserFollowers }) => {
   const [allListUsers, setAllListUsers] = useState([]);

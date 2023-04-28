@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router';
 import { Layout } from './Layout/Layout';
-import Home from './pages/Home';
+import Home from './pages/Home'
 import Tweets from './pages/Tweets';
 
 export const App = () => {
