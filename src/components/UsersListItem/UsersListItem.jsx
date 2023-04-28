@@ -12,8 +12,8 @@ import {
   } from './UsersListItem.styled';
 
 export const UsersListItem = ({users,follow, handleChangeFollowers})=> {
-
-    return ( users.map(({ id, user, tweets, followers, avatar }, idx) => (
+  
+  return ( users.map(({ id, user, tweets, followers, avatar }, idx) => (
             <li key={nanoid()}>
             <Container>
               <Logo src={require('../../images/Logo.png')} alt="logo" />

@@ -2,10 +2,15 @@ import { List} from './UsersList.styled';
 import { useEffect, useState } from 'react';
 import { usersGet } from 'service/Api';
 import { UsersListItem } from 'components/UsersListItem/UsersListItem';
+import { BackLink } from 'components/BackLink/BackLink';
+import { useLocation } from 'react-router';
 
 export const UsersList = ({ users, updateUserFollowers }) => {
   const [allListUsers, setAllListUsers] = useState([]);
   const [follow, setFollow] = useState([]);
+
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     (async () => {
@@ -28,8 +33,12 @@ export const UsersList = ({ users, updateUserFollowers }) => {
   };
 
   return (
-    <List>
+    <> 
+        <BackLink to={backLinkHref}>Go back</BackLink>
+    
+      <List>
       <UsersListItem users={users}  handleChangeFollowers={handleChangeFollowers} follow={follow}/>
     </List>
+    </>  
   );
 };

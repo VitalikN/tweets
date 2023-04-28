@@ -1,16 +1,11 @@
-import { Container } from '@mui/material';
-import { BackLink } from 'components/BackLink/BackLink';
+import {  Container } from '@mui/material';
 import { Btn } from 'components/Button/Button';
 import { Error } from 'components/Error/Error';
 import { Spinner } from 'components/Spinner/Spinner';
 import { UsersList } from 'components/UsersList/UsersList';
 import { userId, usersGet } from 'service/Api';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-
 const Tweets = () => {
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
 
   const [users, setUsers] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
@@ -61,9 +56,7 @@ const Tweets = () => {
   };
   return (
     <Container>
-      <div>
-        <BackLink to={backLinkHref}>Go back</BackLink>
-      </div>
+ 
       {isLoader && <Spinner />}
 
       {users.length > 0 && (
